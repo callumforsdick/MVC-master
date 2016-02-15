@@ -35,8 +35,16 @@
                     <?php echo Utils::escape(Utils::formatDateTime($user->getDueOn())); ?>
                     <?php if ($tooLate): ?></span><?php endif; ?>
                 </p>
-               <a href="<?php echo Utils::createLink('detail', array('id' => $user->getId())); ?>" id="detail-link"><img src="img/action/add.png" alt="" title="Details" class="icon" />Edit</a> <!--the request source was not found-->
-            </li>
+<!--the request source was not found-->
+
+<a href="index.php?page=add-edit&id=<?php 
+                    echo $Users->getId(); ?>">Edit</a> | 
+                        <a href="index.php?page=change-status&id=<?php 
+                    echo $Users->getId(); ?>&cmd=<?php 
+                    echo Users::VOIDED; ?>&status=<?php 
+                    echo $Users->getStatus(); ?>">Delete</a>
+ </li>
+
         <?php endforeach; ?>
     </ul>
 <?php endif; ?>
