@@ -1,0 +1,45 @@
+<?php
+
+//~ Template for list.php
+// variables:
+//  $title - page title
+//  $status - status of Users to be displayed
+//  $Users - Foc to be displayed
+
+?>
+
+<h1>
+    <img src="img/status/<?php echo $status; ?>.png" alt="" title="<?php echo Utils::capitalize($status); ?>" class="icon" />
+    <?php echo $title; ?>
+</h1>
+
+<?php if (empty($user)): ?>
+    <p>No items found.</p>
+<?php else: ?>
+    <ul class="list">
+        <?php foreach ($user as $user): ?>
+            <?php /* @var $user foc */ ?>
+            <?php $tooLate = $status == User::STATUS_PENDING && $user->getDueOn() < new DateTime(); ?>
+            <li>
+                <?php if ($tooLate): ?>
+                    <img src="img/exclamation.png" alt="" title="Should be already done!" />
+                <?php endif; ?>
+                <img src="img/priority/<?php echo $user->getPriority(); ?>.png" alt="Priority <?php echo $user->getPriority(); ?>" title="Priority <?php echo $user->getPriority(); ?>" />
+                <h3><a href="<?php echo Utils::createLink('detail', array('id' => $user->getId())) ?>"><?php echo Utils::escape($user->getId()); ?></a></h3>
+                <?php if ($user->getEmail()): ?>
+                    <p class="username"><?php echo Utils::escape($user->getUsername()); ?></p>
+                <?php endif; ?>
+                <p><span class="label">Created On:</span> <?php echo Utils::escape(Utils::formatDateTime($user->getCreatedOn())); ?></p>
+                <p><span class="label">Due On:</span>
+                    <?php if ($tooLate): ?><span class="too-late"><?php endif; ?>
+                    <?php echo Utils::escape(Utils::formatDateTime($user->getDueOn())); ?>
+                    <?php if ($tooLate): ?></span><?php endif; ?>
+                </p>
+               <a href="<?php echo Utils::createLink('detail', array('id' => $user->getId())); ?>" id="detail-link"><img src="img/action/add.png" alt="" title="Details" class="icon" />Edit</a> <!--the request source was not found-->
+            </li>
+        <?php endforeach; ?>
+    </ul>
+<?php endif; ?>
+<?php
+echo $_SESSION('id');
+?>
