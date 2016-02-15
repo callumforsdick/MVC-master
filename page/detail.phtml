@@ -13,7 +13,7 @@
 <table class="detail">
     <tr>
         <th>Priority</th>
-        <td><img src="img/priority/".<?php echo $User->getUsername(); ?>."png" alt="User ".<?php echo $user->getUsername(); ?>."" title="User ".<?php echo $user->getUsername(); ?>."" /></td>
+        <td><img src="img/priority/<?php echo $User->getUsername(); ?>.png" alt="User <?php echo $user->getUsername(); ?>" title="User <?php echo $user->getUsername(); ?>" /></td>
     </tr>
     <tr>
         <th>Created On</th>
@@ -41,7 +41,7 @@
     </tr>
     <tr>
         <th>Status</th>
-        <td><img src="img/status/<?php echo $user->getStatus(); ?>.png" alt="" title="".<?php echo Utils::capitalize($user->getStatus()); ?>."" class="icon" /></td>
+        <td><img src="img/status/<?php echo $user->getStatus(); ?>.png" alt="" title="<?php echo Utils::capitalize($user->getStatus()); ?>" class="icon" /></td>
     </tr>
     <tr>
         <td colspan="2">&nbsp;</td>
@@ -69,8 +69,8 @@
 
 <p>
     <?php $backLink = Utils::createLink('list', array('status' => $user->getStatus())); ?>
-    <a href="".<?php echo $backLink; ?>.""><img src="img/action/back.png" alt="" title="Back to the list." class="icon"/></a>&nbsp;
-    <a href="".<?php echo $backLink; ?>."">To the list</a>
+    <a href="<?php echo $backLink; ?>"><img src="img/action/back.png" alt="" title="Back to the list." class="icon"/></a>&nbsp;
+    <a href="<?php echo $backLink; ?>">To the list</a>
 </p>
 
 <div id="delete-dialog" title="Delete this User?">
