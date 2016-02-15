@@ -56,7 +56,8 @@ final class UsersDao {
         $sql = '
             UPDATE Users SET
                 username = :username,
-                password = :password
+                password = :password,
+                status = :status
             WHERE
                 id = :id';
         $statement = $this->getDb()->prepare($sql);
@@ -64,6 +65,7 @@ final class UsersDao {
             ':username' => self::formatDateTime(new DateTime()),
             ':password' => true,
             ':id' => $id,
+            ':status' => 'voided'
         ));
         return $statement->rowCount() == 1;
     }
