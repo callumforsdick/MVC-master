@@ -14,11 +14,10 @@ if (array_key_exists('cancel', $_POST)) {
     Utils::redirect('detail', array('id' => $user->getId()));
 } elseif (array_key_exists('save', $_POST)) {
     // for security reasons, do not map the whole $_POST['Users']
-    $data =  array(filter_var
-        ('username' =>$_POST['Users']['username']),
+    $data = filter_var(FILTER_SANITIZE_STRING, array(
+        'username' =>$_POST['Users']['username'],
         'email' => $_POST['Users']['email'],
-        'password' => $_POST['Users']['password'],
-    FILTER_SANITIZE_STRING);
+        'password' => $_POST['Users']['password']));
         
     // map
     UsersMapper::map($user, $data);
